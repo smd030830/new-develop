@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CookieTestController {
 
 	@GetMapping("/cookie/make")
-	public String home(HttpServletResponse response
+	public String make(HttpServletResponse response
 			, @RequestParam("name") String name
 			, @RequestParam("value") String value, Model model)
 	{
@@ -28,7 +28,7 @@ public class CookieTestController {
 	}
 
 	@GetMapping("/cookie/get")
-	public String getInfo(HttpServletRequest request, Model model) {
+	public String get(HttpServletRequest request, Model model) {
 		Cookie[] cks = request.getCookies();
 		if (cks != null && cks.length > 0 ) {
 			model.addAttribute("cookie_time", cks[0].getMaxAge());
@@ -39,7 +39,7 @@ public class CookieTestController {
 	}
 
 	@GetMapping("/cookie/delete")
-	public String home(HttpServletResponse response
+	public String delete(HttpServletResponse response
 			, @RequestParam("name") String name, Model model)
 	{
 		Cookie ck = new Cookie(name, "");

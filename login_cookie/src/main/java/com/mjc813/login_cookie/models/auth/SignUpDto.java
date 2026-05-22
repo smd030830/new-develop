@@ -1,0 +1,34 @@
+package com.mjc813.login_cookie.models.auth;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mjc813.login_cookie.models.member.IMember;
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class SignUpDto implements IMember {
+	@JsonIgnore
+	private Long id;
+
+	private String signId;
+	private String password;
+	private String email;
+
+	@JsonIgnore
+	private Boolean isValidEmail;
+
+	@JsonIgnore
+	private LocalDateTime createDt;
+
+	@JsonIgnore
+	private LocalDateTime updateDt;
+
+	@JsonIgnore
+	private LocalDateTime deleteDt;
+}
