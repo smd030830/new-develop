@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <h1>사용자 정보</h1>
+</header>
+<main>
+    <section id="inputSection">
+        <fieldset class="inputField">
+            <legend>정보 입력</legend>
+            <div class="inputItem">
+                <div class="text-wrapper">아이디</div>
+                <div class="div">
+                    <input type="hidden" id="id" value="0"/>
+                    <input type="text" id="name" class="inputText" maxlength="30"/>
+                </div>
+            </div>
+            <div class="inputItem">
+                <div class="text-wrapper">비밀번호</div>
+                <input type="text" id="password" class="inputText" maxlength="30"/>
+                <div class="div">
+                </div>
+            </div>
+            <div class="inputItem">
+                <div class="text-wrapper">등급</div>
+                <div class="div">
+                    <select id="grade" class="selectCombo">
+                        <option value="ALL">전체이용</option>
+                        <option value="18">18세이상</option>
+                        <option value="13">13세이상</option>
+                    </select>
+                </div>
+            </div>
+            <div class="inputItem">
+                <div class="text-wrapper">가격</div>
+                <div class="div">
+                    <input type="number" id="price" class="inputNumber" min="0" max="999999" value="0"/>
+                </div>
+            </div>
+            <div class="inputItem">
+                <div class="text-wrapper">이미지주소</div>
+                <div class="div">
+                    <input type="text" id="imgUrl" class="inputText"/>
+                </div>
+            </div>
+
+</body>
+</html>

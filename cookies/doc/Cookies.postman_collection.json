@@ -1,0 +1,1056 @@
+{
+  "info": {
+    "_postman_id": "d38ee523-2c13-47fa-8f90-1a335e21d3d3",
+    "name": "Cookies",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16448427",
+    "_collection_link": "https://go.postman.co/collection/16448427-d38ee523-2c13-47fa-8f90-1a335e21d3d3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "category",
+      "item": [
+        {
+          "name": "category_insert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"향료\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/category",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "category"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "category_update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1\r\n    , \"name\": \"야채\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/category",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "category"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "category_deletebyid",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/category/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "category",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "category_findbyid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/category/50",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "category",
+                "50"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "category_search_name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/category/searchname?name=&sort=id,desc&size=5&page=0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "category",
+                "searchname"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": ""
+                },
+                {
+                  "key": "sort",
+                  "value": "id,desc"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "cookie",
+      "item": [
+        {
+          "name": "cookie_insert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"생강과자\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cookie",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cookie"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cookie_update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 5\r\n    , \"name\": \"마늘과자\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cookie",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cookie"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cookie_deletebyid",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cookie/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cookie",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cookie_findbyid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cookie/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cookie",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cookie_search_name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cookie/searchname?name=&sort=id,desc&size=5&page=0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cookie",
+                "searchname"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": ""
+                },
+                {
+                  "key": "sort",
+                  "value": "id,desc"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ingredient",
+      "item": [
+        {
+          "name": "ingredient_insert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"베이킹파우더\"\r\n    , \"categoryId\": 6\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/ingred",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "ingred"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ingredient_update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 8\r\n    , \"categoryId\": 3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/ingred",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "ingred"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ingredient_delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/ingred/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "ingred",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ingredient_findbyid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/ingred/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "ingred",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ingredient_searchname",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/ingred/searchname?name=&size=4&page=0&sort=id,desc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "ingred",
+                "searchname"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": ""
+                },
+                {
+                  "key": "size",
+                  "value": "4"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "sort",
+                  "value": "id,desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ingredient_category_equal",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/ingred/category/4?sort=id,desc&page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "ingred",
+                "category",
+                "4"
+              ],
+              "query": [
+                {
+                  "key": "sort",
+                  "value": "id,desc"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "cooking",
+      "item": [
+        {
+          "name": "cooking_insert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"description\": \"사과파이 파이 그릇과 냄비를 준비하세요  어쩌구 저쩌구\"\r\n    , \"cookieId\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cooking",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cooking"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cooking_update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 2\r\n    , \"cookieId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cooking",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cooking"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cooking_delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cooking/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cooking",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cooking_findbyid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cooking/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cooking",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cooking_searchdescription",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cooking/searchdescription?description=사과&size=2&page=0&sort=id,desc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cooking",
+                "searchdescription"
+              ],
+              "query": [
+                {
+                  "key": "description",
+                  "value": "사과"
+                },
+                {
+                  "key": "size",
+                  "value": "2"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "sort",
+                  "value": "id,desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cooking_cookie_equal",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/cooking/cookie/1?sort=id,desc&page=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "cooking",
+                "cookie",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "sort",
+                  "value": "id,desc"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "recipe",
+      "item": [
+        {
+          "name": "recipe_insert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"cookieId\": 2\r\n    , \"ingredientId\" : 5\r\n    , \"unit\": \"g\"\r\n    , \"weight\": 15.5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/recipe",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "recipe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "recipe_update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 3\r\n    , \"ingredientId\" : 4\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/recipe",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "recipe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "recipe_findbyid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/recipe/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "recipe",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "recipe_findAllByCookieEquals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/recipe/cookie/2?page=1&size=2&sort=id,desc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "recipe",
+                "cookie",
+                "2"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "2"
+                },
+                {
+                  "key": "sort",
+                  "value": "id,desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "recipe_findByIngredient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/recipe/ingredient/4?page=0&size=2&sort=id,desc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "recipe",
+                "ingredient",
+                "4"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "2"
+                },
+                {
+                  "key": "sort",
+                  "value": "id,desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "recipe_deletebyid",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/recipe/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "recipe",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Attach",
+      "item": [
+        {
+          "name": "attach_insert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"fileName\": \"aaaa.jpg\"\r\n    , \"size\": 10\r\n    , \"ext\": \"jpg\"\r\n    , \"storeName\": \"abcefiadskfuewkgiasdkgj\"\r\n    , \"path\": \"test\"\r\n    , \"cookieId\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/attach",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "attach"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "attach_update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1\r\n    , \"fileName\": \"111.jpg\"\r\n    , \"size\": 111\r\n    , \"ext\": \"jpg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/attach",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "attach"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "attach_findbyid",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"fileName\": \"aaaa.jpg\"\r\n    , \"size\": 10\r\n    , \"ext\": \"jpg\"\r\n    , \"storeName\": \"abcefiadskfuewkgiasdkgj\"\r\n    , \"path\": \"test\"\r\n    , \"cookieId\": 2\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/attach/29",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "attach",
+                "29"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "attach_findAllbyCookie",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"fileName\": \"aaaa.jpg\"\r\n    , \"size\": 10\r\n    , \"ext\": \"jpg\"\r\n    , \"storeName\": \"abcefiadskfuewkgiasdkgj\"\r\n    , \"path\": \"test\"\r\n    , \"cookieId\": 2\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/attach/cookie/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "attach",
+                "cookie",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "attach_deletebyid",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8089/api/v1/attach/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "attach",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "file upload",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "cookieDto",
+                  "value": "{\"id\":3, \"name\":\"테스트과자\"}",
+                  "type": "text",
+                  "uuid": "336d5501-7289-48da-a092-9a6c1422fb7e",
+                  "contentType": "application/json"
+                },
+                {
+                  "key": "files",
+                  "type": "file",
+                  "uuid": "b13b4d07-15d9-467a-a5ba-940de7c26221",
+                  "src": "/D:/git/mjc813_8/this_is_java/cookies/doc/쿠키프로젝트_화면설계.pptx"
+                },
+                {
+                  "key": "files",
+                  "type": "file",
+                  "uuid": "d7453b83-d4d4-4713-9ac3-e517bddf4de2",
+                  "src": "/D:/git/mjc813_8/this_is_java/cookies/doc/Cookies.postman_collection.json"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8089/api/v1/file/upload",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8089",
+              "path": [
+                "api",
+                "v1",
+                "file",
+                "upload"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

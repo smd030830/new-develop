@@ -1,0 +1,23 @@
+# docker 이미지 파일을 만드는 형식 => Dockerfile 파일명
+# 도커 이미지 는 레이어 단위로 구성
+# 가장 중요하고 가장 먼저 선언 할것은 어떤 이미지를 가지고 시작할것인지 결정
+FROM eclipse-temurin:21-jre-alpine
+
+WORKDIR /app
+
+# 이미지 만들때 파일을 복사해라
+# COPY 로컬컴퓨터소스폴더 이미지내의대상폴더
+COPY ./swimpool /app
+
+EXPOSE ${PORT}
+
+# CMD ["java", "-jar", "/app/sb_test-0.0.1-SNAPSHOT.jar"]
+
+ENV SPRING_PROFILES_ACTIVE=local
+
+ENTRYPOINT ["java", "-server", "-jar" \
+, "swimpool-0.0.1-SNAPSHOT.jar" \
+, "--spring.profiles.active=${SPRING_PROFILES_ACTIVE}"]
+
+# 이미지 빌드
+# docker build -f Dockerfile.local -t 이미지명:버전명 .

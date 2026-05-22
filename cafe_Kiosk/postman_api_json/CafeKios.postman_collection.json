@@ -1,0 +1,215 @@
+{
+  "info": {
+    "_postman_id": "b0648153-2358-4b4b-8a78-e4cabd2e8ec1",
+    "name": "CafeKios",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16448427",
+    "_collection_link": "https://go.postman.co/collection/16448427-b0648153-2358-4b4b-8a78-e4cabd2e8ec1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "category_insert",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": null\r\n    , \"name\": \"차\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/v1/cat",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "cat"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "category_update",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 4\r\n    , \"name\": \"Tea\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/v1/cat",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "cat"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "category_delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/v1/cat/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "cat",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "category_findbyid",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/v1/cat/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "cat",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "category_search",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/v1/cat/search?name=&size=2&sort=id,desc&page=0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "cat",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": ""
+            },
+            {
+              "key": "size",
+              "value": "2"
+            },
+            {
+              "key": "sort",
+              "value": "id,desc"
+            },
+            {
+              "key": "page",
+              "value": "0"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "product_insert",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": null\r\n    , \"name\": \"딸기케익\"\r\n    , \"price\": 2500\r\n    , \"category\": { \"id\": 2 }\r\n    , \"picture\": \"딸기케익.jpg\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/v1/prd",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "prd"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "product_update",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 2\r\n    , \"name\": \"곰보빵\"\r\n    , \"category\": { \"id\": 1 }\r\n    , \"picture\": \"곰보빵.gif\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8087/api/V1/product",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8087",
+          "path": [
+            "api",
+            "V1",
+            "product"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

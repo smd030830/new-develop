@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Chapter20
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/beginner?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: beginner_user
+    password: beginer1234@
+
+server:
+  port: 8085
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.mjc813.chapter20.gamecrud  # 실제 클래스가 있는 패키지로 수정
+  configuration:
+    map-underscore-to-camel-case: true

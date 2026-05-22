@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mjc813.chapter20.gamecrud.IGameMybatis">
+    <insert id="insertData" parameterType="GameDto">
+        INSERT INTO game_tbl (
+        genre
+        , price
+        , img_url
+        , name
+        , grade
+        ) VALUES (
+        #{genre}
+        , #{price}
+        , #{imgUrl}
+        , #{name}
+        , #{grade}
+        )
+    </insert>
+
+    <update id="updateData" parameterType="GameDto">
+        UPDATE game_tbl SET
+        name = #{name}
+        , price = #{price}
+        , genre = #{genre}
+        , img_url = #{imgUrl}
+        , grade = #{grade}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteData" parameterType="Integer">
+        DELETE FROM game_tbl
+        WHERE id = #{id}
+    </delete>
+
+    <select id="findById" parameterType="Integer" resultType="GameDto">
+        SELECT
+        id
+        , name
+        , genre
+        , grade
+        , price
+        , img_url
+        FROM game_tbl
+        WHERE id = #{id}
+    </select>
+
+    <select id="countList" parameterType="SearchRequestDto" resultType="Integer">
+        SELECT
+        count(*) AS cnt
+        FROM game_tbl
+        WHERE 1 = 1
+        <if test="searchName != ''">
+            AND name LIKE CONCAT('%', #{searchName}, '%')
+        </if>
+        <if test="searchGrade != ''">
+            AND grade = #{searchGrade}
+        </if>
+    </select>
+
+    <select id="searchList" parameterType="SearchRequestDto" resultType="GameDto">
+        SELECT
+        id
+        , name
+        , genre
+        , grade
+        , price
+        , img_url
+        FROM game_tbl
+        WHERE 1 = 1
+        <if test="searchName != ''">
+            AND name LIKE CONCAT('%', #{searchName}, '%')
+        </if>
+        <if test="searchGrade != ''">
+            AND grade = #{searchGrade}
+        </if>
+        ORDER BY id DESC
+        LIMIT ${rowsPerPage} OFFSET #{curPage}
+    </select>
+</mapper>

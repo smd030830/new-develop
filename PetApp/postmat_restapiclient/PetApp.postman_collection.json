@@ -1,0 +1,116 @@
+{
+  "info": {
+    "_postman_id": "b2bfca4d-c29b-452d-adb1-ed15d5f451d6",
+    "name": "PetApp",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16448427",
+    "_collection_link": "https://go.postman.co/collection/16448427-b2bfca4d-c29b-452d-adb1-ed15d5f451d6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "insert",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"강아지2\"\r\n\t, \"species\": \"강아지2\"\r\n\t, \"breed\": \"페르시안\"\r\n\t, \"gender\": \"F\"\r\n\t, \"birth\": \"2025-01-01\"\r\n    , \"imgFile\": \"image/file/a.jpg\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8084/api/pet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8084",
+          "path": [
+            "api",
+            "pet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 3\r\n    , \"name\": \"멍멍3333\"\r\n    , \"species\": \"강아지3\"\r\n    , \"birth\": \"2025-04-04\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8084/api/pet",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8084",
+          "path": [
+            "api",
+            "pet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8084/api/pet?id=6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8084",
+          "path": [
+            "api",
+            "pet"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "6"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "findById",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8084/api/pet/45",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8084",
+          "path": [
+            "api",
+            "pet",
+            "45"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

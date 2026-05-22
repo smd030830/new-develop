@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="app">
+      <header id="header" class="header">
+        <h1>제목</h1>
+        <nav>
+          <a href="#" class="nav-link active">홈</a>
+          <a href="#" class="nav-link">소개</a>
+          <a href="#" class="nav-link">연락처</a>
+        </nav>
+      </header>
+      <main id="container">
+        <article class="item" data-id="1" data-category="tech">
+          <h2>기술 기사</h2>
+          <p class="content">내용...</p>
+        </article>
+        <article class="item" data-id="2" data-category="news">
+          <h2>뉴스 기사</h2>
+          <p class="content">내용...</p>
+        </article>
+        <article class="item" data-id="3" data-category="culture">
+          <h2>문화 기사</h2>
+          <p class="content">내용...</p>
+        </article>
+        <input type="text" value="입력박스" />
+      </main>
+    </div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script>
+      // getElementById - ID로 단일 요소 선택
+      console.log("getElementById - ID로 단일 요소 선택");
+      const header = document.getElementById("header");
+      console.log(header); // <div id="header">...</div>
+      console.log($("#header").html());
+
+      // getElementsByClassName - 클래스로 여러 요소 선택
+      console.log("getElementsByClassName - 클래스로 여러 요소 선택");
+      const items = document.getElementsByClassName("nav-link");
+      console.log(items); // HTMLCollection [<a class="nav-link">, ...]
+      console.log(items.length); // 개수
+      console.log($(".nav-link"));
+      console.log($(".nav-link").length);
+
+      // getElementsByTagName - 태그명으로 여러 요소 선택
+      console.log("getElementsByTagName - 태그명으로 여러 요소 선택");
+      const paragraphs = document.getElementsByTagName("p");
+      console.log(paragraphs); // HTMLCollection [<p>, <p>, ...]
+      console.log($("p"));
+
+      // querySelector - CSS 선택자로 첫 번째 요소 선택 (권장!)
+      console.log("querySelector - CSS 선택자로 첫 번째 요소 선택 (권장!)");
+      const firstItem = document.querySelector(".nav-link");
+      console.log(firstItem);
+      console.log($(".nav-link")[0]);
+      const nestedElement = document.querySelector(
+        "#container > .item:first-child"
+      );
+      console.log(nestedElement);
+      console.log($("#container > .item:first-child")[0]);
+      const inputElement = document.querySelector('input[type="text"]');
+      console.log(inputElement);
+      console.log($('input[type="text"]')[0]);
+
+      // querySelectorAll - CSS 선택자로 모든 요소 선택 (권장!)
+      console.log("querySelectorAll - CSS 선택자로 모든 요소 선택 (권장!)");
+      const allItems = document.querySelectorAll(".item");
+      console.log(allItems); // NodeList [<article class="item">, ...]
+      console.log($(".item"));
+
+      // NodeList vs HTMLCollection
+      // NodeList - forEach 사용 가능
+      console.log("NodeList - forEach 사용 가능");
+      allItems.forEach((item) => {
+        console.log(item.textContent);
+      });
+      // jquery 는 자바스크립트 데이터에 Jquery 전용 속성과 함수를 가지고 다시 객체로 만드므로 forEach 를 직접 사용 못함. each()
+      $(".item").each((index, item) => {
+        console.log($(item).text());
+      });
+
+      // HTMLCollection - forEach 불가, Array로 변환 필요
+      console.log("HTMLCollection - forEach 불가");
+      Array.from(items).forEach((item) => {
+        console.log(item.textContent);
+      });
+      // jquery 는 자바스크립트 데이터에 Jquery 전용 속성과 함수를 가지고 다시 객체로 만드므로 forEach 를 직접 사용 못함. each()
+      $(".nav-link").each((index, item) => {
+        console.log($(item).text());
+      });
+
+      // 고급 선택자 예제
+      console.log("고급 선택자 예제");
+      const examples = document.querySelectorAll(`
+            .container .item,
+            #special-item,
+            [data-status="active"],
+            input:not([disabled]),
+            li:nth-child(odd)
+        `);
+      console.log(examples);
+      console.log($("#container > input[type=text]"));
+
+      // 복합 선택자
+      const activeLink = document.querySelector(".nav-link.active");
+      console.log(activeLink);
+
+      // 속성 선택자
+      const techArticle = document.querySelector('[data-category="tech"]');
+      console.log(techArticle);
+
+      // 자식/자손 선택자
+      const headerTitle = document.querySelector("#app > header > h1");
+      console.log(headerTitle);
+      const allParagraphs = document.querySelectorAll("#app p");
+      console.log(allParagraphs);
+
+      // 가상 클래스
+      const firstArticle = document.querySelector("article:first-child");
+      console.log(firstArticle);
+      const evenArticles = document.querySelectorAll("article:nth-child(even)");
+      console.log(evenArticles);
+
+      // 특정 요소 내에서 검색
+      const mainElement = document.querySelector("main");
+      console.log(mainElement);
+      const articlesInMain = mainElement.querySelectorAll("article");
+      console.log(articlesInMain);
+
+      // 요소 생성
+      const newDiv = document.createElement("div");
+      const newParagraph = document.createElement("p");
+      const newImage = document.createElement("img");
+
+      // 텍스트 노드 생성
+      const textNode = document.createTextNode("안녕하세요!");
+
+      // 요소에 텍스트 추가 (더 간단한 방법)
+      newParagraph.textContent = "이것은 새로운 단락입니다.";
+      // 또는
+      newParagraph.innerText = "이것은 새로운 단락입니다.";
+
+      // HTML 포함 (주의: XSS 위험 있음)
+      newDiv.innerHTML = "<strong>굵은 텍스트</strong>";
+
+      // 요소에 속성 추가
+      newDiv.className = "container";
+      newDiv.id = "new-container";
+      newImage.src = "https://picsum.photos/800/300";
+      newImage.alt = "이미지 설명";
+
+      // appendChild - 마지막 자식으로 추가
+      const container = document.getElementById("container");
+      container.appendChild(newDiv);
+      container.appendChild(newParagraph);
+      $("#container").append("<p>이것은 새로운 단락입니다.</p>");
+
+      container.appendChild(newImage);
+      $("#container").append(
+        "<img id='img01' class='imgClass redColorClass' src='https://picsum.photos/800/300' alt='이미지 설명'></img>"
+      );
+
+      // append - 여러 요소/텍스트 동시 추가 (최신)
+      container.append(newDiv, "텍스트도 가능", newParagraph);
+
+      // prepend - 첫 번째 자식으로 추가
+      container.prepend(newDiv);
+
+      // insertBefore - 특정 요소 앞에 추가
+      const referenceNode = container.querySelector(".existing");
+      container.insertBefore(newDiv, referenceNode);
+
+      // insertAdjacentElement - 위치 지정
+      const target = document.getElementById("target");
+      // target.insertAdjacentElement("beforebegin", newDiv); // target 앞
+      // target.insertAdjacentElement("afterbegin", newDiv); // target 첫 자식
+      // target.insertAdjacentElement("beforeend", newDiv); // target 마지막 자식
+      // target.insertAdjacentElement("afterend", newDiv); // target 뒤
+
+      // insertAdjacentHTML - HTML 문자열 삽입
+      // target.insertAdjacentHTML("beforeend", "<p>새로운 단락</p>");
+
+      // after, before (최신)
+      // referenceNode.after(newDiv); // 형제로 뒤에 추가
+      // referenceNode.before(newDiv); // 형제로 앞에 추가
+
+      $("#container article:nth-child(1)")
+        .before(`<article class="item" data-id="1" data-category="tech">
+          <h2>스포츠 기사</h2>
+          <p class="content">내용...</p>
+        </article>`);
+      console.log($("#container"));
+      console.log($("#container").children);
+      $("#container article:nth-child(1)").remove();
+
+      // getAttribute - 속성 값 가져오기
+      console.log("getAttribute, setAttribute, removeAttribute");
+      let element = document.getElementById("img01");
+      console.log(element.getAttribute("alt"));
+      console.log(element.getAttribute("class"));
+
+      // setAttribute - 속성 값 설정
+      element.setAttribute("title", "툴팁 텍스트");
+      element.setAttribute("data-status", "active");
+
+      // removeAttribute - 속성 제거
+      element.removeAttribute("title");
+
+      console.log("JQuery getAttribute, setAttribute, removeAttribute");
+      console.log($("#img01").attr("alt"));
+      console.log($("#img01").attr("class"));
+      $("#img01").attr("title", "툴팁 2 텍스트");
+      $("#img01").attr("data-status", "active");
+      // console.log($("#img01").attr("title", ""));
+      $("#header").css("color", "blue");
+      console.log($("#header").css("color"));
+    </script>
+  </body>
+</html>

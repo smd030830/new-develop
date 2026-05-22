@@ -1,0 +1,50 @@
+services:
+  swimpool_mysql8:
+    container_name: "mysql8_container"
+    image: "mysql:8.4.5"
+    restart: "always"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234@
+      TZ: Asia/Seoul
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      # 초기화 스크립트
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - my_vnetwork
+
+  backend-server:
+    container_name: "backend-container"
+    image: "backend-server:0.0.16"
+    restart: "always"
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env.prod
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+      TZ: Asia/Seoul
+    depends_on:
+      swimpool_mysql8:
+        condition: service_healthy
+    networks:
+      - my_vnetwork
+
+networks:
+  my_vnetwork:
+    driver: bridge
+
+# 두번째 Docker Compose 실행
+# docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
+# docker compose -f docker-compose.prod.yml down

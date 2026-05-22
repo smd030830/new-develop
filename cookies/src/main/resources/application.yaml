@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: cookies
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cookies?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: cookies_user
+    password: cookies9876!
+  jpa:
+    hibernate:
+      ddl-auto: update # Entity 의 멤버변수가 변하면 자동으로 데이터베이스의 테이블도 갱신해준다.
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+  mvc:
+    throw-exception-if-no-handler-found: true # @ExceptionHandler 에서 예외처리를 찾아라
+  web:
+    resources:
+      add-mappings: false # 404.html 출력 하지 마라
+
+server:
+  port: 8089
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+cookie:
+  save-folder: ./cookie_upload
+

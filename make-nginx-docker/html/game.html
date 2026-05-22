@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta lang="ko" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>닌텐도 게임</title>
+    <link rel="stylesheet" href="./css/0108-1.css" />
+  </head>
+  <body>
+    <header>
+      <h1>닌텐도 게임 정보</h1>
+    </header>
+    <main>
+      <section id="inputSection">
+        <fieldset class="inputField">
+          <legend>게임 입력</legend>
+          <div class="inputItem">
+            <div class="text-wrapper">게임제목</div>
+            <div class="div">
+              <input type="hidden" id="id" value="0"/>
+              <input type="text" id="name" class="inputText" maxlength="30"/>
+            </div>
+          </div>
+          <div class="inputItem">
+            <div class="text-wrapper">장르</div>
+            <div class="div">
+              <select id="genre" class="selectCombo">
+                <option value="A">액션</option>
+                <option value="S">스포츠</option>
+                <option value="R">RPG</option>
+              </select>
+            </div>
+          </div>
+          <div class="inputItem">
+            <div class="text-wrapper">등급</div>
+            <div class="div">
+              <select id="grade" class="selectCombo">
+                <option value="ALL">전체이용</option>
+                <option value="18">18세이상</option>
+                <option value="13">13세이상</option>
+              </select>
+            </div>
+          </div>
+          <div class="inputItem">
+            <div class="text-wrapper">가격</div>
+            <div class="div">
+              <input type="number" id="price" class="inputNumber" min="0" max="999999" value="0"/>
+            </div>
+          </div>
+          <div class="inputItem">
+            <div class="text-wrapper">이미지주소</div>
+            <div class="div">
+              <input type="text" id="imgUrl" class="inputText"/>
+            </div>
+          </div>
+          <div class="inputImage">
+            <img
+              id="showImage"
+              src="https://pimg.mk.co.kr/news/cms/202504/06/news-p.v1.20250404.ad221f845db2489a86c2ff50f32c53fa_P1.png"
+              alt="게임 대표 이미지"
+            />
+          </div>
+          <div class="inputButtons">
+            <div class="btn-wrapper">
+              <button class="btn" id="btnAdd">추가</button>
+            </div>
+            <div class="btn-wrapper">
+              <button class="btn" id="btnUpt">수정</button>
+            </div>
+            <div class="btn-wrapper">
+              <button class="btn" id="btnDel">삭제</button>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+      <section id="listSection">
+        <fieldset class="listField">
+          <legend>게임 목록</legend>
+          <div class="listTitleRow">
+            <div class="listItem">
+              <div class="itemTitle text-wrapper">장르</div>
+            </div>
+            <div class="listItem">
+              <div class="itemTitle text-wrapper">등급</div>
+            </div>
+            <div class="listItem">
+              <div class="itemTitle text-wrapper">제목</div>
+            </div>
+          </div>
+          <div class="listDataBlock">
+            <!-- <div class="listDataRow">
+              <div class="listItem">
+                <div class="itemData text-wrapper">2</div>
+              </div>
+              <div class="listItem">
+                <div class="itemData text-wrapper">레이싱</div>
+              </div>
+              <div class="listItem">
+                <div class="itemData text-wrapper">15세</div>
+              </div>
+              <div class="listItem">
+                <div class="itemData text-wrapper">마리오 카트</div>
+              </div>
+            </div> -->
+          </div>
+        </fieldset>
+      </section>
+    </main>
+    <footer>
+      <div>made 2016-01-09</div>
+    </footer>
+  </body>
+</html>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/0108-1.js"></script>

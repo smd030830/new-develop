@@ -1,0 +1,344 @@
+{
+  "info": {
+    "_postman_id": "6765580d-efce-4d77-b5a0-b5d2c4bb8d28",
+    "name": "Swimpool",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16448427",
+    "_collection_link": "https://go.postman.co/collection/16448427-6765580d-efce-4d77-b5a0-b5d2c4bb8d28?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "swimpool",
+      "item": [
+        {
+          "name": "swimpool insert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"종로구립수영장1\"\r\n    , \"tel\" : \"02-1111-2222\"\r\n\t, \"addr1\" : \"서울시 은평구 은평로7\"\r\n\t, \"addr2\" : \"32-22\"\r\n\t, \"lanes\" : \"50M * 4, 100 * 2\"\r\n\t, \"size\" : \"350m2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8092/rest/sp",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "sp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "swimpool update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 3\r\n    , \"name\" : \"은평구립수영장2\"\r\n    , \"tel\" : \"02-2222-2222\"\r\n\t, \"addr1\" : \"서울시 은평구 은평로2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8092/rest/sp",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "sp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "swimpool findbyid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8092/rest/sp/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "sp",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "swimpool deletebyid",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8092/rest/sp/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "sp",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "swimpool findAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8092/rest/sp/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "sp",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "swimpool findAllByNameContaining",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8092/rest/sp/name?name=구&size=10&page=0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "sp",
+                "name"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "구"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "teacher",
+      "item": [
+        {
+          "name": "teacher insert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"박태환8\"\r\n    , \"main\": \"자유형\"\r\n    , \"swimpoolId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8092/rest/tc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "tc"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "teacher update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 6\r\n    , \"name\": \"박태환6\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8092/rest/tc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "tc"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "teacher findById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8092/rest/tc/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "tc",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "teacher findBySwimpool",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8092/rest/tc/swimpool/1?page=0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "tc",
+                "swimpool",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "teacher findByNameContaining",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8092/rest/tc/teacher?name=&page=0&size=10&sort=name,asc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "tc",
+                "teacher"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": ""
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sort",
+                  "value": "name,asc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "teacher deleteById",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8092/rest/tc/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8092",
+              "path": [
+                "rest",
+                "tc",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
