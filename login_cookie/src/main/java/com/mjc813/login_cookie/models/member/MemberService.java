@@ -1,5 +1,6 @@
 package com.mjc813.login_cookie.models.member;
 
+import com.mjc813.login_cookie.models.role.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class MemberService {
 		memberEntity.setId(null);
 		memberEntity.setCreateDt(LocalDateTime.now());
 		memberEntity.setIsValidEmail(false);
+		memberEntity.setRole(Role.USER.toString());
 		MemberEntity saved = this.memberJpaRepository.save(memberEntity);
 		MemberDto result = (MemberDto)new MemberDto().clone(saved, true);
 		return result;

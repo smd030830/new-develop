@@ -26,6 +26,9 @@ public class MemberEntity implements IMember {
 	@Column(nullable = false, length = 200, unique = true)
 	private String email;
 
+	@Column(nullable = false, length = 10)
+	private String role;
+
 	@Column(name = "is_valid_email", nullable = false)
 	private Boolean isValidEmail;
 
