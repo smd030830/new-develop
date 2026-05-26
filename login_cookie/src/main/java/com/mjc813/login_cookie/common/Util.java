@@ -14,7 +14,7 @@ public class Util {
 	}
 
 	public static String getRandomAllString(int length) {
-		String sample = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-+{}";
+		String sample = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!";
 		return getRandomString(sample, length);
 	}
 

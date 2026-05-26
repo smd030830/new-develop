@@ -1,5 +1,6 @@
 package com.mjc813.login_cookie.biz;
 
+import com.mjc813.login_cookie.models.auth.SignInDto;
 import com.mjc813.login_cookie.models.auth.ValidEmailDto;
 import com.mjc813.login_cookie.models.member.MemberEntity;
 import com.mjc813.login_cookie.models.member.MemberJpaRepository;
@@ -23,5 +24,13 @@ public class AuthService {
 		} else {
 			return false;
 		}
+	}
+
+	public Boolean signMember(SignInDto signInDto) {
+		MemberEntity find = this.memberJpaRepository.findBySignId(signInDto.getSignId()).orElseThrow();
+		if ( signInDto.getPassword().equals(find.getPassword()) ) {
+			return true;
+		}
+		return false;
 	}
 }

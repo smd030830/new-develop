@@ -32,7 +32,7 @@ public class MemberEntity implements IMember {
 	@Column(name = "is_valid_email", nullable = false)
 	private Boolean isValidEmail;
 
-	@Column(name = "valid_text")
+	@Column(name = "valid_text", length=100)
 	private String validText;
 
 	@Column(name = "create_dt", nullable = false)
