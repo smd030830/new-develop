@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
-
-import static java.util.Arrays.stream;
 
 @RestController
 @RequestMapping("/api/v1/music")
