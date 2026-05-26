@@ -104,6 +104,8 @@ public class CookieSignRestController {
 		, HttpServletResponse response) throws LoginException {
 		Boolean isSign = this.authService.signMember(signInDto);
 		if ( isSign ) {
+			// 정상적으로 로그인(사인인) 되면 쿠키를 클라이언트로 응답한다.
+			// 이 클라이언트 해당 쿠키를 가지고 다음에 계속 요청한다.
 			Cookie signCookie = new Cookie("MJC_LOGIN", signInDto.getSignId());
 			signCookie.setPath("/");
 			signCookie.setHttpOnly(true);

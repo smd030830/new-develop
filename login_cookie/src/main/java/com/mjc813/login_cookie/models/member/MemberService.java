@@ -58,4 +58,15 @@ public class MemberService {
 			.map( x -> (MemberDto)new MemberDto().clone(x, true))
 			.toList();
 	}
+
+	public MemberDto findBySignId(String signId) {
+		Optional<MemberEntity> bySignId = this.memberJpaRepository.findBySignId(signId);
+		if ( bySignId.isPresent() ) {
+			MemberEntity member = bySignId.get();
+			MemberDto result = (MemberDto)new MemberDto().clone(member, true);
+			return result;
+		} else {
+			return null;
+		}
+	}
 }
