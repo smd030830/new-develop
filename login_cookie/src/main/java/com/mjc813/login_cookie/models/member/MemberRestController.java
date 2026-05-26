@@ -16,7 +16,7 @@ public class MemberRestController {
 
 	@PostMapping("")
 	public ResponseEntity<ComResponseDto<MemberDto>> insert(@RequestBody MemberDto memberDto) {
-		MemberDto result = this.memberService.insert(memberDto);
+		MemberDto result = this.memberService.insert(memberDto, true);
 		return ResponseEntity.status(201).body(
 			ComResponseDto.make(ResponseCode.SUCCESS, result)
 		);

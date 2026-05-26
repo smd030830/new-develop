@@ -15,8 +15,14 @@ public interface IMember {
 	String getEmail();
 	void setEmail(String email);
 
+	String getRole();
+	void setRole(String role);
+
 	Boolean getIsValidEmail();
 	void setIsValidEmail(Boolean isValidEmail);
+
+	String getValidText();
+	void setValidText(String validText);
 
 	LocalDateTime getCreateDt();
 	void setCreateDt(LocalDateTime createDt);
@@ -43,8 +49,14 @@ public interface IMember {
 		if ( bForced || source.getEmail() != null ) {
 			this.setEmail(source.getEmail());
 		}
+		if ( bForced || source.getRole() != null ) {
+			this.setRole(source.getRole());
+		}
 		if ( bForced || source.getIsValidEmail() != null ) {
 			this.setIsValidEmail(source.getIsValidEmail());
+		}
+		if ( bForced || source.getValidText() != null ) {
+			this.setValidText(source.getValidText());
 		}
 		if ( bForced || source.getCreateDt() != null ) {
 			this.setCreateDt(source.getCreateDt());

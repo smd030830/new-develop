@@ -21,7 +21,13 @@ public class SignUpDto implements IMember {
 	private String email;
 
 	@JsonIgnore
+	private String role;
+
+	@JsonIgnore
 	private Boolean isValidEmail;
+
+	@JsonIgnore
+	private String validText;
 
 	@JsonIgnore
 	private LocalDateTime createDt;

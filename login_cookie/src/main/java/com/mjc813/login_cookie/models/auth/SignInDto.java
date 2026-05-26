@@ -22,7 +22,11 @@ public class SignInDto implements IMember {
 	@JsonIgnore
 	private String email;
 	@JsonIgnore
+	private String role;
+	@JsonIgnore
 	private Boolean isValidEmail;
+	@JsonIgnore
+	private String validText;
 	@JsonIgnore
 	private LocalDateTime createDt;
 	@JsonIgnore

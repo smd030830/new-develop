@@ -1,5 +1,7 @@
-package com.mjc813.login_cookie.models.member;
+package com.mjc813.login_cookie.models.auth;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mjc813.login_cookie.models.member.IMember;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,15 +12,26 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MemberDto implements IMember {
+public class ValidEmailDto implements IMember {
+	@JsonIgnore
 	private Long id;
+
 	private String signId;
+
+	@JsonIgnore
 	private String password;
+	@JsonIgnore
 	private String email;
+	@JsonIgnore
 	private String role;
+	@JsonIgnore
 	private Boolean isValidEmail;
+
 	private String validText;
+	@JsonIgnore
 	private LocalDateTime createDt;
+	@JsonIgnore
 	private LocalDateTime updateDt;
+	@JsonIgnore
 	private LocalDateTime deleteDt;
 }

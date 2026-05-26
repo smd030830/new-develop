@@ -25,6 +25,19 @@ spring:
     suffix: .html
     servlet:
       cache: false
+      expose-request-attributes: true
+    charset: UTF-8
+  mail:
+    host: smtp-relay.brevo.com
+    port: 587
+    username: ac32c6001@smtp-brevo.com
+    password: xsmtpsib-be049cfaac1fc9b58249e87f5df98562c426865741f75d9bcb2c73d351d03264-V2fYIcvyY9Gvbkj1
+    properties:
+      mail:
+        SMTP:
+          auth: true
+          STARTTLS:
+            enable: true
 
 server:
   port: 8181
