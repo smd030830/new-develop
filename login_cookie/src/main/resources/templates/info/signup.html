@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>회원 가입 페이지</h1>
+
+</body>
+</html>
+<script>
+    $(() => {
+        $.viewMember = (data) => {
+            $("#id").val(data.id);
+            $("#signId").val(data.signId);
+            $("#password").val(data.password);
+            $("#email").val(data.email);
+        }
+        $.getMember = () => {
+            let data = {
+                id: $("#id").val()
+                , signId: $("#signId").val()
+                , email: $("#email").val()
+                , password: $("#password").val()
+            };
+            return data;
+        }
+
+        $("#btnInsert").click(() => {
+            $.insertData();
+        })
+        $.insertData = () => {
+            let data = $.getMember();
+            $.ajax({
+                url: "/rest/member" // 요청 URL
+                , type: "POST"          // 전송 방식 (GET, POST 등)
+                , dataType: "json"      // 응답 데이터 타입
+                , data: JSON.stringify(data)
+                , contentType: "application/json"
+            })
+                .done(function (result, textStatus, jqXHR) {
+                    // 요청 성공 시 실행
+                    alert("성공:", result);
+                    $.clearInputBox();   // $.ajax 함수안에서 this 는 jquery 객체자신이므로 that 을 사용
+                    $.searchList(1);  // 목록을 새로 고침
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    // 요청 실패 시 실행
+                    alert("실패:", textStatus);
+                })
+                .always(function () {
+                    // 성공/실패 관계없이 항상 실행
+                });
+        }
+
+        $.clearInputBox = () => {
+            let data = {
+                id: ""
+                , signId: ""
+                , email: ""
+                , password: ""
+            };
+            $.viewMember(data);
+        }
+
+        $.searchList = (page) => {
+
+        }
+    });
+</script>
