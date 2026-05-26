@@ -1,5 +1,6 @@
 package com.mjc813.login_cookie.biz;
 
+import com.mjc813.login_cookie.common.LoginException;
 import com.mjc813.login_cookie.models.auth.SignInDto;
 import com.mjc813.login_cookie.models.auth.ValidEmailDto;
 import com.mjc813.login_cookie.models.member.MemberEntity;
@@ -26,8 +27,14 @@ public class AuthService {
 		}
 	}
 
-	public Boolean signMember(SignInDto signInDto) {
+	public Boolean signMember(SignInDto signInDto) throws LoginException {
 		MemberEntity find = this.memberJpaRepository.findBySignId(signInDto.getSignId()).orElseThrow();
+		if ( !find.getIsValidEmail() ) {
+			throw new LoginException("not valid email");
+		}
+		if ( find.getRole().equals(Role.GUEST.toString()) ) {
+			throw new LoginException("doesn't need login");
+		}
 		if ( signInDto.getPassword().equals(find.getPassword()) ) {
 			return true;
 		}

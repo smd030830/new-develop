@@ -1,6 +1,7 @@
 package com.mjc813.login_cookie.biz;
 
 import com.mjc813.login_cookie.common.ComResponseDto;
+import com.mjc813.login_cookie.common.LoginException;
 import com.mjc813.login_cookie.common.ResponseCode;
 import com.mjc813.login_cookie.models.auth.SignInDto;
 import com.mjc813.login_cookie.models.auth.SignUpDto;
@@ -100,7 +101,7 @@ public class CookieSignRestController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<ComResponseDto<Boolean>> signin(@RequestBody SignInDto signInDto
-		, HttpServletResponse response) {
+		, HttpServletResponse response) throws LoginException {
 		Boolean isSign = this.authService.signMember(signInDto);
 		if ( isSign ) {
 			Cookie signCookie = new Cookie("MJC_LOGIN", signInDto.getSignId());

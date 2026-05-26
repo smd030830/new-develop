@@ -63,13 +63,13 @@
             })
             .done(function(result, textStatus, jqXHR) {
                 // 요청 성공 시 실행
-                alert("성공:", result);
+                alert("성공:" + result);
                 $.clearInputBox();   // $.ajax 함수안에서 this 는 jquery 객체자신이므로 that 을 사용
                 $.searchList(1);  // 목록을 새로 고침
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 // 요청 실패 시 실행
-                alert("실패:", textStatus);
+                alert("실패:" + jqXHR.responseJSON.data);
             })
             .always(function() {
                 // 성공/실패 관계없이 항상 실행
