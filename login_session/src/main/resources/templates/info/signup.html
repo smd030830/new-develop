@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>회원가입</title>
+	<script src="/js/jquery.min.js"></script>
+</head>
+<body>
+	<h1>회원 가입 페이지</h1>
+	<div>
+		<fieldset>
+			<label for="signId">사인아이디</label><input type="text" id="signId" name="signId" maxlength="20" />
+			<label for="password">암호</label><input type="password" id="password" name="password" maxlength="20" />
+			<label for="email">이메일</label><input type="email" id="email" name="email" maxlength="200" />
+			<button id="btnSignup">회원가입</button>
+		</fieldset>
+	</div>
+</body>
+</html>
+
+<script>
+    $(() => {
+        $.getMember = () => {
+            let data = {
+                signId: $("#signId").val()
+                , email: $("#email").val()
+                , password: $("#password").val()
+            };
+            return data;
+        }
+
+        $("#btnSignup").click(() => {
+            $.signupData();
+        })
+        $.signupData = () => {
+            let data = $.getMember();
+            $.ajax({
+                url: "/api/v1/auth/signup" // 요청 URL
+                , type: "POST"          // 전송 방식 (GET, POST 등)
+                , dataType: "json"      // 응답 데이터 타입
+                , data: JSON.stringify(data)
+                , contentType: "application/json"
+            })
+            .done(function(result, textStatus, jqXHR) {
+                // 요청 성공 시 실행
+                alert("성공:" + result);
+                document.location.href = "http://localhost:8181";
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                // 요청 실패 시 실행
+                alert("실패:" + jqXHR.responseJSON.data);
+            })
+            .always(function() {
+                // 성공/실패 관계없이 항상 실행
+            });
+        }
+    });
+</script>

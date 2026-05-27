@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>login 쿠키 홈페이지</title>
+</head>
+<body>
+	<h1>로그인 쿠키</h1>
+	{{^signedMember}}
+	<div>
+		<div>비계정 사용자</div>
+		<div><a href="/signup">회원가입 페이지</a></div>
+		<div><a href="/signin">로그인 페이지</a></div>
+	</div>
+	{{/signedMember}}
+	{{#signedMember}}
+	<div>
+		<div>계정 사용자</div>
+		<div>이름 : {{signId}}</div>
+		<div>ROLE : {{role}}</div>
+	</div>
+	{{/signedMember}}
+</body>
+</html>

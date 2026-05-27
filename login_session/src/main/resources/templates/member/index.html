@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="utf-8" />
+	<title>멤버 관리</title>
+	<script src="/js/jquery.min.js"></script>
+</head>
+<body>
+<header>
+	<h1>멤버 정보</h1>
+	<div>
+		<fieldset>
+			<input type="hidden" id="id" name="id" />
+			<label for="signId">사인아이디</label><input type="text" id="signId" name="signId" maxlength="20" />
+			<label for="password">암호</label><input type="password" id="password" name="password" maxlength="20" />
+			<label for="email">이메일</label><input type="email" id="email" name="email" maxlength="200" />
+			<button id="btnInsert">추가</button>
+		</fieldset>
+	</div>
+	<div>
+		<button id="btnList">목록조회</button>
+		<fieldset id="list">
+			<div>
+				<div>signId</div>
+				<div>email</div>
+				<div>isValidEmail</div>
+			</div>
+		</fieldset>
+	</div>
+</header>
+</body>
+</html>
+<script>
+    $(() => {
+        $.viewMember = (data) => {
+            $("#id").val(data.id);
+            $("#signId").val(data.signId);
+            $("#password").val(data.password);
+            $("#email").val(data.email);
+	    }
+        $.getMember = () => {
+            let data = {
+                id: $("#id").val()
+                , signId: $("#signId").val()
+	            , email: $("#email").val()
+	            , password: $("#password").val()
+            };
+            return data;
+        }
+
+        $("#btnInsert").click(() => {
+            $.insertData();
+        })
+	    $.insertData = () => {
+            let data = $.getMember();
+            $.ajax({
+                url: "/rest/member" // 요청 URL
+                , type: "POST"          // 전송 방식 (GET, POST 등)
+                , dataType: "json"      // 응답 데이터 타입
+                , data: JSON.stringify(data)
+                , contentType: "application/json"
+            })
+            .done(function(result, textStatus, jqXHR) {
+                // 요청 성공 시 실행
+                alert("성공:" + result);
+                $.clearInputBox();   // $.ajax 함수안에서 this 는 jquery 객체자신이므로 that 을 사용
+                $.searchList(1);  // 목록을 새로 고침
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                // 요청 실패 시 실행
+                alert("실패:" + jqXHR.responseJSON.data);
+            })
+            .always(function() {
+                // 성공/실패 관계없이 항상 실행
+            });
+	    }
+
+        $.clearInputBox = () => {
+            let data = {
+                id: ""
+                , signId: ""
+                , email: ""
+                , password: ""
+            };
+            $.viewMember(data);
+	    }
+
+        $.searchList = (page) => {
+
+        }
+    });
+</script>
