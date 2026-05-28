@@ -101,7 +101,7 @@ public class SessionSignRestController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<ComResponseDto<Boolean>> signin(@RequestBody SignInDto signInDto
-			, HttpServletResponse response
+//			, HttpServletResponse response
 			, HttpSession httpSession
 	) throws LoginException {
 		Boolean isSign = this.authService.signMember(signInDto);
@@ -118,5 +118,13 @@ public class SessionSignRestController {
 					ComResponseDto.make(ResponseCode.AUTHENTICATION_ERROR, isSign)
 			);
 		}
+	}
+
+	@GetMapping("/signout")
+	public ResponseEntity<ComResponseDto<Boolean>> signout(HttpSession httpSession) {
+		httpSession.invalidate();
+		return ResponseEntity.status(200).body(
+				ComResponseDto.make(ResponseCode.SUCCESS, true)
+		);
 	}
 }

@@ -120,4 +120,16 @@ public class CookieSignRestController {
 			);
 		}
 	}
+
+	@GetMapping("/signout")
+	public ResponseEntity<ComResponseDto<Boolean>> signout(HttpServletResponse response) {
+		Cookie ck = new Cookie("MJC_LOGIN", "");
+		ck.setPath("/");
+		ck.setHttpOnly(true);
+		ck.setMaxAge(0);
+		response.addCookie(ck);
+		return ResponseEntity.status(200).body(
+				ComResponseDto.make(ResponseCode.SUCCESS, true)
+		);
+	}
 }
