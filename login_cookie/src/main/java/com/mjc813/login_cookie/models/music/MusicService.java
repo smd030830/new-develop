@@ -3,6 +3,7 @@ package com.mjc813.login_cookie.models.music;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class MusicService {
 	public MusicDto insert(MusicDto insertDto) {
 		MusicEntity musicEntity = (MusicEntity)new MusicEntity().copyMembers(insertDto, true);
 		musicEntity.setId(null);
+		musicEntity.setCreateDt(LocalDateTime.now());
 		MusicEntity saved = this.musicJpaRepository.save(musicEntity);
 		MusicDto musicDto = (MusicDto)new MusicDto().copyMembers(saved, true);
 		return musicDto;

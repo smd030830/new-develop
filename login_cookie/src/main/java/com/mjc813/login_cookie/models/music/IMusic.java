@@ -1,5 +1,7 @@
 package com.mjc813.login_cookie.models.music;
 
+import java.time.LocalDateTime;
+
 public interface IMusic {
 	Long getId();
 	void setId(Long id);
@@ -12,6 +14,24 @@ public interface IMusic {
 
 	String getPlaytime();
 	void setPlaytime(String playtime);
+
+	String getCreateId();
+	void setCreateId(String createId);
+
+	LocalDateTime getCreateDt();
+	void setCreateDt(LocalDateTime createDt);
+
+	String getUpdateId();
+	void setUpdateId(String updateId);
+
+	LocalDateTime getUpdateDt();
+	void setUpdateDt(LocalDateTime updateDt);
+
+	String getDeleteId();
+	void setDeleteId(String deleteId);
+
+	LocalDateTime getDeleteDt();
+	void setDeleteDt(LocalDateTime deleteDt);
 
 	default IMusic copyMembers(IMusic source, boolean forced) {
 		if ( source == null ) {
@@ -28,6 +48,24 @@ public interface IMusic {
 		}
 		if ( forced || source.getPlaytime() != null ) {
 			this.setPlaytime(source.getPlaytime());
+		}
+		if ( forced || source.getCreateId() != null ) {
+			this.setCreateId(source.getCreateId());
+		}
+		if ( forced || source.getCreateDt() != null ) {
+			this.setCreateDt(source.getCreateDt());
+		}
+		if ( forced || source.getUpdateId() != null ) {
+			this.setUpdateId(source.getUpdateId());
+		}
+		if ( forced || source.getUpdateDt() != null ) {
+			this.setUpdateDt(source.getUpdateDt());
+		}
+		if ( forced || source.getDeleteId() != null ) {
+			this.setDeleteId(source.getDeleteId());
+		}
+		if ( forced || source.getDeleteDt() != null ) {
+			this.setDeleteDt(source.getDeleteDt());
 		}
 		return this;
 	}

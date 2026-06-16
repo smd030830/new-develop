@@ -21,4 +21,18 @@ public class CommonExceptionHandler {
 				ComResponseDto.make(ResponseCode.AUTHENTICATION_ERROR, ex.getMessage())
 		);
 	}
+
+	@ExceptionHandler(AuthorizedException.class)
+	public ResponseEntity<ComResponseDto<String>> exceptionHandler(AuthorizedException ex) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+				ComResponseDto.make(ResponseCode.AUTHORIZATION_ERROR, ex.getMessage())
+		);
+	}
+
+	@ExceptionHandler(Mjc813Exception.class)
+	public ResponseEntity<ComResponseDto<String>> exceptionHandler(Mjc813Exception ex) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+				ComResponseDto.make(ex.getCode(), ex.getMessage())
+		);
+	}
 }

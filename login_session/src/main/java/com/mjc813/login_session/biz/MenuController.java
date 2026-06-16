@@ -4,6 +4,7 @@ import com.mjc813.login_session.models.member.MemberDto;
 import com.mjc813.login_session.models.member.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,25 +19,13 @@ public class MenuController {
 	private MemberService memberService;
 
 	@GetMapping("/")
-	public String index(HttpServletRequest request, Model model) {
-		Cookie cookie = this.getCookie(request, "MJC_LOGIN");
-		if ( cookie != null ) {
-			String signId = cookie.getValue();
-			MemberDto signedMember = this.memberService.findBySignId(signId);
+	public String index(HttpSession session, Model model) {
+		Object oSignId = session.getAttribute("MJC_LOGIN");
+		if ( oSignId != null ) {
+			MemberDto signedMember = this.memberService.findBySignId(oSignId.toString());
 			model.addAttribute("signedMember", signedMember);
 		}
 		return "home";
-	}
-
-	private Cookie getCookie(HttpServletRequest request, String cookieName) {
-		Cookie[] cookies = request.getCookies();
-		Cookie result = null;
-		try {
-			result = Arrays.stream(cookies).filter(cookie -> cookie.getName().equals(cookieName)).findFirst().orElse(null);
-		} catch (Exception ex) {
-			result = null;
-		}
-		return result;
 	}
 
 	@GetMapping("/signup")

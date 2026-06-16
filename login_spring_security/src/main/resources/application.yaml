@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: login_spring_security
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/auth_spring_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: auth_user
+    password: qwer1234!
+  jpa:
+    hibernate:
+      ddl-auto: update # Entity 의 멤버변수가 변하면 자동으로 데이터베이스의 테이블도 갱신해준다.
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+      dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+  mvc:
+    throw-exception-if-no-handler-found: true # @ExceptionHandler 에서 예외처리를 찾아라
+#  web:
+#    resources:
+#      add-mappings: false # 404.html 출력 하지 마라
+  mustache:
+    suffix: .html
+    servlet:
+      cache: false
+      expose-request-attributes: true
+    charset: UTF-8
+  mail:
+    host: smtp-relay.brevo.com
+    port: 587
+    username: ac32c6001@smtp-brevo.com
+    password: xsmtpsib-be049cfaac1fc9b58249e87f5df98562c426865741f75d9bcb2c73d351d03264-V2fYIcvyY9Gvbkj1
+    properties:
+      mail:
+        SMTP:
+          auth: true
+          STARTTLS:
+            enable: true
+
+server:
+  port: 8383
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+kind: Application

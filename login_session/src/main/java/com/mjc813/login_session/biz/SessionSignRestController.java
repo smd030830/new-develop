@@ -10,8 +10,6 @@ import com.mjc813.login_session.models.member.IMember;
 import com.mjc813.login_session.models.member.MemberDto;
 import com.mjc813.login_session.models.member.MemberService;
 import jakarta.mail.MessagingException;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
