@@ -26,12 +26,10 @@ public class MemberRestController {
 	@GetMapping("")
 	public ResponseEntity<ComResponseDto<List<MemberDto>>> findAll(HttpSession session) {
 		String userRole = (String) session.getAttribute("ROLE");
-
 		if (userRole == null || !userRole.equals("ADMIN")) {
 			return ResponseEntity.status(403)
 					.body(ComResponseDto.make(ResponseCode.AUTHORIZATION_ERROR, null));
 		}
-
 		List<MemberDto> result = this.memberService.findAll();
 		return ResponseEntity.status(200)
 				.body(ComResponseDto.make(ResponseCode.SUCCESS, result));
