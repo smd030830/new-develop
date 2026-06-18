@@ -35,19 +35,6 @@ public class MemberRestController {
 				ComResponseDto.make(ResponseCode.SUCCESS, result)
 		);
 	}
-
-	@GetMapping("")
-	@PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-	public ResponseEntity<ComResponseDto<List<MemberDto>>> findAll(HttpSession session) throws Mjc813Exception {
-		String userRole = (String) session.getAttribute("ROLE");
-		if (userRole == null || !userRole.equals("ADMIN")) {
-			return ResponseEntity.status(403)
-					.body(ComResponseDto.make(ResponseCode.AUTHORIZATION_ERROR, null));
-		}
-		List<MemberDto> result = this.memberService.findAll();
-		return ResponseEntity.status(200)
-				.body(ComResponseDto.make(ResponseCode.SUCCESS, result));
-	}
 	@GetMapping("/all")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<ComResponseDto<List<MemberDto>>> findAll() throws Mjc813Exception {
