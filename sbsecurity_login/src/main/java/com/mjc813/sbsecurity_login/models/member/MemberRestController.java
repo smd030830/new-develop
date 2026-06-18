@@ -29,8 +29,8 @@ public class MemberRestController {
 	}
 	@PatchMapping("")
 	@PreAuthorize("hasAnyAuthority('ADMIN') or @memberService.isCreateId(#updateDto.id, authentication.name)")
-	public ResponseEntity<ComResponseDto<MusicDto>> update(@RequestBody MusicDto updateDto) throws Mjc813Exception {
-		MusicDto result = this.memberService.update(updateDto);
+	public ResponseEntity<ComResponseDto<MemberDto>> update(@RequestBody MemberDto updateDto) throws Mjc813Exception {
+		MemberDto result = this.memberService.update(updateDto);
 		return ResponseEntity.status(HttpStatus.OK).body(
 				ComResponseDto.make(ResponseCode.SUCCESS, result)
 		);
@@ -38,7 +38,7 @@ public class MemberRestController {
 
 	@GetMapping("")
 	@PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-	public ResponseEntity<ComResponseDto<List<MemberDto>>> findAll(HttpSession session) {
+	public ResponseEntity<ComResponseDto<List<MemberDto>>> findAll(HttpSession session) throws Mjc813Exception {
 		String userRole = (String) session.getAttribute("ROLE");
 		if (userRole == null || !userRole.equals("ADMIN")) {
 			return ResponseEntity.status(403)
@@ -51,7 +51,7 @@ public class MemberRestController {
 	@GetMapping("/all")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<ComResponseDto<List<MemberDto>>> findAll() throws Mjc813Exception {
-		List<MusicDto> result = this.memberService.findAll();
+		List<MemberDto> result = this.memberService.findAll();
 		return ResponseEntity.status(200).body(
 				ComResponseDto.make(ResponseCode.SUCCESS, result)
 		);

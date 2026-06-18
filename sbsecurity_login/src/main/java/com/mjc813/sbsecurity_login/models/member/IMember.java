@@ -99,4 +99,6 @@ public interface IMember extends UserDetails {
     default String getUsername(){
         return this.getSignId();
     }
+
+    Object getCreateId();
 }

@@ -56,11 +56,11 @@ public class MemberService implements UserDetailsService {
 		return result;
 	}
 
-	public List<MemberDto> findAll() {
-		List<MemberEntity> all = this.memberJpaRepository.findAll();
-		List<MemberDto> result = this.transfer(all);
-		return result;
-	}
+//	public List<MemberDto> findAll() {
+//		List<MemberEntity> all = this.memberJpaRepository.findAll();
+//		List<MemberDto> result = this.transfer(all);
+//		return result;
+//	}
 
 	private List<MemberDto> transfer(List<MemberEntity> all) {
 		return all.stream()
@@ -85,18 +85,17 @@ public class MemberService implements UserDetailsService {
 	}
 
 	public boolean isCreateId(Long memId, String signId) throws Mjc813Exception {
-		MemberDto findid = this.findById(memId);    // id 로 자료를 찾는다.
+		MemberDto findid = this.findById(signId);    // id 로 자료를 찾는다.
 		if (findid != null && findid.getCreateId().equals(signId)) {
 			return true;
 		}
 		return false;
 	}
-	public List<MusicDto> findAll() throws Mjc813Exception {
+	public List<MemberDto> findAll() throws Mjc813Exception {
 		// findAll 은 모든 자료를 조회해서 리턴하므로 자료의 갯수가 전부 20~30개 정도를 넘으면 별로 안좋은 기능이다.
 		// 그 보다 많은 데이터를 조회하려면 Paging 이나 Slicing 으로 조회하세요
-//		List<MusicEntity> musicEntities = this.musicJpaRepository.findAll();
-		List<MemberEntity> musicEntities = this.memberJpaRepository.findAllByDeleteIdIsNull();
-		List<MemberDto> result = this.transfer(musicEntities);
+		List<MemberEntity> memberEntities = this.memberJpaRepository.findAllByDeleteIdIsNull();
+		List<MemberDto> result = this.transfer(memberEntities);
 		return result;
 	}
 }
