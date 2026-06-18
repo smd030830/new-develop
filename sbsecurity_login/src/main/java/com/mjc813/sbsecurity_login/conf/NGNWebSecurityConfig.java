@@ -2,17 +2,22 @@ package com.mjc813.sbsecurity_login.conf;
 
 import com.mjc813.sbsecurity_login.models.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -22,6 +27,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class NGNWebSecurityConfig {
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -59,12 +65,13 @@ public class NGNWebSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, NGNAuthenticationFilter ngnAuthenticationFilter) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-//			.csrf()
+                .csrf(AbstractHttpConfigurer::disable)
                 .cors( x -> x.configurationSource(corsConfigurationSource()))
                 .headers( x -> x.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
-                .authorizeHttpRequests( x -> x.requestMatchers("/").permitAll()
+                .authorizeHttpRequests( x -> x
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/signup").permitAll()
                         .requestMatchers("/signin").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
@@ -74,5 +81,11 @@ public class NGNWebSecurityConfig {
                 .addFilterBefore(ngnAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
         ;
         return http.build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer staticResourceCustomizer() {
+        return x -> x.ignoring()
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 }
