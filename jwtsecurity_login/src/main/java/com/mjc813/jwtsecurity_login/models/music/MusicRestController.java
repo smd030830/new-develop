@@ -23,7 +23,7 @@ public class MusicRestController {
 	public ResponseEntity<ComResponseDto<MusicDto>> insert(@RequestBody MusicDto insertDto) throws LoginException {
 		MusicDto result = this.musicService.insert(insertDto);
 		return ResponseEntity.status(201).body(
-				ComResponseDto.make(ResponseCode.SUCCESS, result)
+			ComResponseDto.make(ResponseCode.SUCCESS, result)
 		);
 	}
 

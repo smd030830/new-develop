@@ -10,94 +10,82 @@ import java.util.Collection;
 import java.util.List;
 
 public interface IMember extends UserDetails {
-    Long getId();
+	Long getId();
+	void setId(Long id);
 
-    void setId(Long id);
+	String getSignId();
+	void setSignId(String signId);
 
-    String getSignId();
+	String getPassword();
+	void setPassword(String password);
 
-    void setSignId(String signId);
+	String getEmail();
+	void setEmail(String email);
 
-    String getPassword();
+	String getRole();
+	void setRole(String role);
 
-    void setPassword(String password);
+	Boolean getIsValidEmail();
+	void setIsValidEmail(Boolean isValidEmail);
 
-    String getEmail();
+	String getValidText();
+	void setValidText(String validText);
 
-    void setEmail(String email);
+	LocalDateTime getCreateDt();
+	void setCreateDt(LocalDateTime createDt);
 
-    String getRole();
+	LocalDateTime getUpdateDt();
+	void setUpdateDt(LocalDateTime updateDt);
 
-    void setRole(String role);
+	LocalDateTime getDeleteDt();
+	void setDeleteDt(LocalDateTime deleteDt);
 
-    Boolean getIsValidEmail();
+	default IMember clone(IMember source, boolean bForced) {
+		if ( source == null ) {
+			return this;
+		}
+		if ( bForced || source.getId() != null ) {
+			this.setId(source.getId());
+		}
+		if ( bForced || source.getSignId() != null ) {
+			this.setSignId(source.getSignId());
+		}
+		if ( bForced || source.getPassword() != null ) {
+			this.setPassword(source.getPassword());
+		}
+		if ( bForced || source.getEmail() != null ) {
+			this.setEmail(source.getEmail());
+		}
+		if ( bForced || source.getRole() != null ) {
+			this.setRole(source.getRole());
+		}
+		if ( bForced || source.getIsValidEmail() != null ) {
+			this.setIsValidEmail(source.getIsValidEmail());
+		}
+		if ( bForced || source.getValidText() != null ) {
+			this.setValidText(source.getValidText());
+		}
+		if ( bForced || source.getCreateDt() != null ) {
+			this.setCreateDt(source.getCreateDt());
+		}
+		if ( bForced || source.getUpdateDt() != null ) {
+			this.setUpdateDt(source.getUpdateDt());
+		}
+		if ( bForced || source.getDeleteDt() != null ) {
+			this.setDeleteDt(source.getDeleteDt());
+		}
+		return this;
+	}
 
-    void setIsValidEmail(Boolean isValidEmail);
+	@Override
+	default Collection<? extends GrantedAuthority> getAuthorities() {
+		List<SimpleGrantedAuthority> list = new ArrayList<>();
+		list.add(new SimpleGrantedAuthority(this.getRole()));
+		return list;
+	}
 
-    String getValidText();
-
-    void setValidText(String validText);
-
-    LocalDateTime getCreateDt();
-
-    void setCreateDt(LocalDateTime createDt);
-
-    LocalDateTime getUpdateDt();
-
-    void setUpdateDt(LocalDateTime updateDt);
-
-    LocalDateTime getDeleteDt();
-
-    void setDeleteDt(LocalDateTime deleteDt);
-
-    default IMember clone(IMember source, boolean bForced) {
-        if (source == null) {
-            return this;
-        }
-        if (bForced || source.getId() != null) {
-            this.setId(source.getId());
-        }
-        if (bForced || source.getSignId() != null) {
-            this.setSignId(source.getSignId());
-        }
-        if (bForced || source.getPassword() != null) {
-            this.setPassword(source.getPassword());
-        }
-        if (bForced || source.getEmail() != null) {
-            this.setEmail(source.getEmail());
-        }
-        if (bForced || source.getRole() != null) {
-            this.setRole(source.getRole());
-        }
-        if (bForced || source.getIsValidEmail() != null) {
-            this.setIsValidEmail(source.getIsValidEmail());
-        }
-        if (bForced || source.getValidText() != null) {
-            this.setValidText(source.getValidText());
-        }
-        if (bForced || source.getCreateDt() != null) {
-            this.setCreateDt(source.getCreateDt());
-        }
-        if (bForced || source.getUpdateDt() != null) {
-            this.setUpdateDt(source.getUpdateDt());
-        }
-        if (bForced || source.getDeleteDt() != null) {
-            this.setDeleteDt(source.getDeleteDt());
-        }
-        return this;
-    }
-
-    @Override
-    default  Collection<? extends GrantedAuthority> getAuthorities(){
-        List<SimpleGrantedAuthority> list = new ArrayList<>();
-        list.add(new SimpleGrantedAuthority(this.getRole()));
-        return list;
-    }
-
-    @Override
-    default String getUsername(){
-        return this.getSignId();
-    }
-
-    Object getCreateId();
+	@Override
+	default String getUsername() {
+		return this.getSignId();
+	}
 }

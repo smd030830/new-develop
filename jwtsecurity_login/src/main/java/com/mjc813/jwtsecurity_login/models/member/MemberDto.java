@@ -18,12 +18,7 @@ public class MemberDto implements IMember {
 	private String role;
 	private Boolean isValidEmail;
 	private String validText;
-	private String updateId;
-	private String findId;
-	private LocalDateTime createTime;
-	private LocalDateTime updateTime;
 	private LocalDateTime createDt;
 	private LocalDateTime updateDt;
 	private LocalDateTime deleteDt;
-
 }

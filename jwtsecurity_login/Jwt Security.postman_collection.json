@@ -1,0 +1,244 @@
+{
+  "info": {
+    "_postman_id": "756d3e0f-f985-4e46-a225-699a64eeb3e9",
+    "name": "Jwt Security",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16448427",
+    "_collection_link": "https://go.postman.co/collection/16448427-756d3e0f-f985-4e46-a225-699a64eeb3e9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "signup",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"signId\": \"abcdefg\"\r\n\t, \"password\": \"123456\"\r\n\t, \"email\": \"sincerus@hanmail.net\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/v1/auth/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "send email",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/v1/auth/emailtest/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "emailtest",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "signin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"signId\": \"bbbbb\"\r\n    , \"password\": \"bbbbb\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/v1/auth/signin",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "signin"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "music insert",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"불타오르네\"\r\n    , \"artist\": \"BTS\"\r\n    , \"playtime\": \"04:02\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/v1/music",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "music"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "music update",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 1\r\n    , \"playtime\": \"06:06\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/v1/music",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "music"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "music deleteById",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/v1/music/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "music",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "music findAll",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/v1/music/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "music",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "music findById",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/v1/music/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "music",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "signout",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8083/api/v1/auth/signout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "signout"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

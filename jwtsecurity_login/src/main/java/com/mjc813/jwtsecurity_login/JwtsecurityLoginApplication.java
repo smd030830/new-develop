@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JwtsecurityLoginApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(JwtsecurityLoginApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(JwtsecurityLoginApplication.class, args);
+	}
 
 }

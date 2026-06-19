@@ -1,6 +1,5 @@
 package com.mjc813.jwtsecurity_login.models.member;
 
-import com.mjc813.jwtsecurity_login.common.Mjc813Exception;
 import com.mjc813.jwtsecurity_login.common.Util;
 import com.mjc813.jwtsecurity_login.models.role.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,16 +53,16 @@ public class MemberService implements UserDetailsService {
 		return result;
 	}
 
-//	public List<MemberDto> findAll() {
-//		List<MemberEntity> all = this.memberJpaRepository.findAll();
-//		List<MemberDto> result = this.transfer(all);
-//		return result;
-//	}
+	public List<MemberDto> findAll() {
+		List<MemberEntity> all = this.memberJpaRepository.findAll();
+		List<MemberDto> result = this.transfer(all);
+		return result;
+	}
 
 	private List<MemberDto> transfer(List<MemberEntity> all) {
 		return all.stream()
-				.map( x -> (MemberDto)new MemberDto().clone(x, true))
-				.toList();
+			.map( x -> (MemberDto)new MemberDto().clone(x, true))
+			.toList();
 	}
 
 	public MemberDto findBySignId(String signId) {
@@ -80,20 +79,5 @@ public class MemberService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return this.findBySignId(username);
-	}
-
-	public boolean isCreateId(Long memId, String signId) throws Mjc813Exception {
-		MemberDto findid = this.findById(signId);    // id 로 자료를 찾는다.
-		if (findid != null && findid.getCreateId().equals(signId)) {
-			return true;
-		}
-		return false;
-	}
-	public List<MemberDto> findAll() throws Mjc813Exception {
-		// findAll 은 모든 자료를 조회해서 리턴하므로 자료의 갯수가 전부 20~30개 정도를 넘으면 별로 안좋은 기능이다.
-		// 그 보다 많은 데이터를 조회하려면 Paging 이나 Slicing 으로 조회하세요
-		List<MemberEntity> memberEntities = this.memberJpaRepository.findAllByDeleteIdIsNull();
-		List<MemberDto> result = this.transfer(memberEntities);
-		return result;
 	}
 }

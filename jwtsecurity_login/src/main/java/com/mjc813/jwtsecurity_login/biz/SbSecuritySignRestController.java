@@ -39,9 +39,9 @@ public class SbSecuritySignRestController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<ComResponseDto<Boolean>> signin(@RequestBody SignInDto signInDto
-			, HttpSession session) {
+		, HttpSession session) {
 		Authentication auth = this.authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(signInDto.getSignId(), signInDto.getPassword())
+			new UsernamePasswordAuthenticationToken(signInDto.getSignId(), signInDto.getPassword())
 		);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		session.setAttribute("MJC_LOGIN", signInDto.getSignId());

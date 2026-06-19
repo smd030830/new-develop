@@ -1,6 +1,6 @@
 package com.mjc813.jwtsecurity_login.biz;
 
-import com.mjc813.jwtsecurity_login.models.member.MemberDto;
+import com.mjc813.jwtsecurity_login.models.member.IMember;
 import com.mjc813.jwtsecurity_login.models.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +15,12 @@ public class MenuController {
 	@GetMapping("/")
 	public String index(Model model) {
 		Object obj = model.getAttribute("signedMember");
-		if ( obj != null ) {
-			MemberDto signedMember = this.memberService.findBySignId(obj.toString());
+		if ( obj instanceof IMember signedMember) {
 			model.addAttribute("signedMember", signedMember);
 		}
 		return "home";
 	}
+
 	@GetMapping("/signup")
 	public String signupPage() {
 		return "info/signup";
