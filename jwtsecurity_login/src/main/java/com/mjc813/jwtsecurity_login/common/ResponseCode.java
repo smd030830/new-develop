@@ -12,7 +12,8 @@ public enum ResponseCode {
 	SERVER_ERROR(49000),
 	DATA_NOT_FOUND_ERROR(51000),
 	AUTHENTICATION_ERROR(52000), // 로그인 인증 에러
-	AUTHORIZATION_ERROR(53000); // 자원을 사용하기 위한 권한 인가 에러
+	AUTHORIZATION_ERROR(53000), // 자원을 사용하기 위한 권한 인가 에러
+	TOKEN_NOT_EXPIRED_ERROR(54000); // 토큰이 정상인데도 리프레시를 발급할때
 
 	private Integer code;
 

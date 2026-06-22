@@ -2,8 +2,10 @@ package com.mjc813.jwtsecurity_login.biz;
 
 import com.mjc813.jwtsecurity_login.common.ComResponseDto;
 import com.mjc813.jwtsecurity_login.common.ResponseCode;
+import com.mjc813.jwtsecurity_login.jwt.JwtExpireException;
 import com.mjc813.jwtsecurity_login.jwt.JwtUtils;
 import com.mjc813.jwtsecurity_login.models.auth.AuthTokenDto;
+import com.mjc813.jwtsecurity_login.models.auth.RefreshAuthTokenDto;
 import com.mjc813.jwtsecurity_login.models.auth.SignInDto;
 import com.mjc813.jwtsecurity_login.models.auth.SignUpDto;
 import com.mjc813.jwtsecurity_login.models.member.IMember;
@@ -68,6 +70,26 @@ public class SbSecuritySignRestController {
 		session.invalidate();
 		return ResponseEntity.status(200).body(
 				ComResponseDto.make(ResponseCode.SUCCESS, true)
+		);
+	}
+
+	@PostMapping("/refresh")
+	public ResponseEntity<ComResponseDto<AuthTokenDto>> refresh(@RequestBody RefreshAuthTokenDto authToken) {
+		String signId = authToken.getSignId();
+		String accessToken = authToken.getAccessToken();
+		try {
+			this.jwtUtils.validateToken(accessToken);
+		} catch (JwtExpireException e) {
+			// 이 토큰은 시간 종료되었으므로 재발급 가능하다.
+			String newAccessToken = this.jwtUtils.generateAccessToken(signId);
+			String newRefreshToken = this.jwtUtils.generateRefreshToken(signId);
+			AuthTokenDto authTokenDto = new AuthTokenDto(newAccessToken, newRefreshToken);
+			return ResponseEntity.status(200).body(
+					ComResponseDto.make(ResponseCode.SUCCESS, authTokenDto)
+			);
+		}
+		return ResponseEntity.status(500).body(
+				ComResponseDto.make(ResponseCode.TOKEN_NOT_EXPIRED_ERROR, null)
 		);
 	}
 }
