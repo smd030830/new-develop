@@ -2,6 +2,8 @@ package com.mjc813.jwtsecurity_login.biz;
 
 import com.mjc813.jwtsecurity_login.common.ComResponseDto;
 import com.mjc813.jwtsecurity_login.common.ResponseCode;
+import com.mjc813.jwtsecurity_login.jwt.JwtUtils;
+import com.mjc813.jwtsecurity_login.models.auth.AuthTokenDto;
 import com.mjc813.jwtsecurity_login.models.auth.SignInDto;
 import com.mjc813.jwtsecurity_login.models.auth.SignUpDto;
 import com.mjc813.jwtsecurity_login.models.member.IMember;
@@ -27,6 +29,8 @@ public class SbSecuritySignRestController {
 	private AuthService authService;
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	@Autowired
+	private JwtUtils jwtUtils;
 
 	@PostMapping("/signup")
 	public ResponseEntity<ComResponseDto<IMember>> signUp(@RequestBody SignUpDto signUpDto) {
@@ -38,16 +42,24 @@ public class SbSecuritySignRestController {
 	}
 
 	@PostMapping("/signin")
-	public ResponseEntity<ComResponseDto<Boolean>> signin(@RequestBody SignInDto signInDto
-		, HttpSession session) {
+	public ResponseEntity<ComResponseDto<AuthTokenDto>> signin(@RequestBody SignInDto signInDto
+			, HttpSession session) {
 		Authentication auth = this.authenticationManager.authenticate(
-			new UsernamePasswordAuthenticationToken(signInDto.getSignId(), signInDto.getPassword())
+				new UsernamePasswordAuthenticationToken(signInDto.getSignId(), signInDto.getPassword())
 		);
 		SecurityContextHolder.getContext().setAuthentication(auth);
-		session.setAttribute("MJC_LOGIN", signInDto.getSignId());
-		session.setMaxInactiveInterval(1200);
+//		session.setAttribute("MJC_LOGIN", signInDto.getSignId());
+//		session.setMaxInactiveInterval(1200);
+
+		String accessToken = this.jwtUtils.generateAccessToken(signInDto.getSignId());
+		String refreshToken = this.jwtUtils.generateRefreshToken(signInDto.getSignId());
+
+//		MemberDto signMember = this.memberService.findBySignId(signInDto.getSignId());
+//		String accessToken = jwtUtils.generateToken(signMember);
+
+		AuthTokenDto authTokenDto = new AuthTokenDto(accessToken, refreshToken);
 		return ResponseEntity.status(200).body(
-				ComResponseDto.make(ResponseCode.SUCCESS, true)
+				ComResponseDto.make(ResponseCode.SUCCESS, authTokenDto)
 		);
 	}
 
