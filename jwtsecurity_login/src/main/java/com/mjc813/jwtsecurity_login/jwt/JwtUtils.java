@@ -6,14 +6,11 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
 
-@Slf4j
 @Component
 public class JwtUtils {
     //	@Value("${myapp.jwt.secret:thisismyjwtsecretkey!123456abcdef}")
@@ -58,7 +55,7 @@ public class JwtUtils {
         return str;
     }
 
-    public Claims parseToken(String token) throws JwtExpireException {
+    public Claims parseToken(String token) {
         try {
             Claims cl = Jwts.parser()
                     .verifyWith(this.secretKey)
@@ -66,14 +63,9 @@ public class JwtUtils {
                     .parseSignedClaims(token)
                     .getPayload();
             return cl;
-        } catch ( ExpiredJwtException e ) {
-            log.error(e.getMessage());
-            throw new JwtExpireException(e.getMessage());
-        } catch ( IllegalArgumentException e ) {
-            log.error(e.getMessage());
-            throw new JwtIllegalException(e.getMessage());
-        } catch ( JwtException e ) {
-            log.error(e.getMessage());
+        } catch (ExpiredJwtException | IllegalArgumentException e ) {
+            throw e;
+        } catch (JwtException e ) {
             throw e;
         }
     }

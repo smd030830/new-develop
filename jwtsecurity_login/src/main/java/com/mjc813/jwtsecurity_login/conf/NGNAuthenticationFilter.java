@@ -1,17 +1,22 @@
 package com.mjc813.jwtsecurity_login.conf;
 
+import com.mjc813.jwtsecurity_login.common.ResponseCode;
 import com.mjc813.jwtsecurity_login.jwt.JwtExpireException;
 import com.mjc813.jwtsecurity_login.jwt.JwtIllegalException;
 import com.mjc813.jwtsecurity_login.jwt.JwtUtils;
 import com.mjc813.jwtsecurity_login.models.member.MemberDto;
 import com.mjc813.jwtsecurity_login.models.member.MemberService;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -19,6 +24,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+@Slf4j
 @Component
 public class NGNAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
@@ -41,7 +47,14 @@ public class NGNAuthenticationFilter extends OncePerRequestFilter {
                 );
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
-        } catch (JwtExpireException | JwtIllegalException | JwtException e) {
+        } catch (ExpiredJwtException e ) {
+            log.error(e.getMessage());
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            SecurityContextHolder.clearContext();
+            return;
+        } catch (JwtIllegalException | JwtException e) {
+            log.error(e.getMessage());
+            SecurityContextHolder.clearContext();
         }
         filterChain.doFilter(request, response);
     }
