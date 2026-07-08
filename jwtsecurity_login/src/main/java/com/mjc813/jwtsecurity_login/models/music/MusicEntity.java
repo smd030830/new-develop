@@ -26,6 +26,9 @@ public class MusicEntity implements IMusic {
 	@Column(name = "playtime", nullable = false, length = 5)
 	private String playtime;
 
+	@Column(name = "description", length = 200)
+	private String description;
+
 
 	@Column(name = "create_id", nullable = false, length = 20)
 	private String createId;

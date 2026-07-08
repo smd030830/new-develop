@@ -15,6 +15,9 @@ public interface IMusic {
 	String getPlaytime();
 	void setPlaytime(String playtime);
 
+	String getDescription();
+	void setDescription(String description);
+
 	String getCreateId();
 	void setCreateId(String createId);
 
@@ -48,6 +51,9 @@ public interface IMusic {
 		}
 		if ( forced || source.getPlaytime() != null ) {
 			this.setPlaytime(source.getPlaytime());
+		}
+		if ( forced || source.getDescription() != null ) {
+			this.setDescription(source.getDescription());
 		}
 		if ( forced || source.getCreateId() != null ) {
 			this.setCreateId(source.getCreateId());

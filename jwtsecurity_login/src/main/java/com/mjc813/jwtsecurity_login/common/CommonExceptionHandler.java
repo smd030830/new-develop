@@ -13,7 +13,7 @@ public class CommonExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ComResponseDto<String>> exceptionHandler(Exception ex) {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-				ComResponseDto.make(ResponseCode.SERVER_ERROR, ex.getMessage())
+			ComResponseDto.make(ResponseCode.SERVER_ERROR, ex.getMessage())
 		);
 	}
 
@@ -35,10 +35,10 @@ public class CommonExceptionHandler {
 	public ResponseEntity<ComResponseDto<String>> exceptionHandler(MethodArgumentNotValidException ex) {
 		StringBuilder sb = new StringBuilder();
 		ex.getFieldErrors().forEach((x) -> {
-			sb.append(x.getField()).append(" error, ");
+			sb.append("{").append(x.getField()).append(" error:").append(x.getDefaultMessage()).append("}, ");
 		});
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-				ComResponseDto.make(ResponseCode.AUTHENTICATION_ERROR, sb.toString())
+				ComResponseDto.make(ResponseCode.AUTHENTICATION_ERROR, sb.substring(0, sb.length() - 2))
 		);
 	}
 }

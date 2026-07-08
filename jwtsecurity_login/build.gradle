@@ -23,9 +23,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-aspectj'
 
     // Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
     implementation 'io.jsonwebtoken:jjwt-api:0.13.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+    testImplementation 'io.projectreactor:reactor-test'
     // Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.13.0'
     // Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson

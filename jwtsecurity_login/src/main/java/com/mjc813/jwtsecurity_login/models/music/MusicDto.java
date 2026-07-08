@@ -1,5 +1,6 @@
 package com.mjc813.jwtsecurity_login.models.music;
 
+import jakarta.persistence.Column;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ public class MusicDto implements IMusic {
 	private String title;
 	private String artist;
 	private String playtime;
+	private String description;
 
 	private String createId;
 	private LocalDateTime createDt;

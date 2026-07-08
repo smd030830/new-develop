@@ -25,7 +25,7 @@ public class MusicRestController {
 		MusicDto insertDto = (MusicDto)new MusicDto().copyMembers(insertParam, true);
 		MusicDto result = this.musicService.insert(insertDto);
 		return ResponseEntity.status(201).body(
-				ComResponseDto.make(ResponseCode.SUCCESS, result)
+			ComResponseDto.make(ResponseCode.SUCCESS, result)
 		);
 	}
 
