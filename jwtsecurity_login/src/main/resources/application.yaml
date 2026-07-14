@@ -42,8 +42,8 @@ spring:
       client:
         registration:
           google:
-            client-id: ${YOUR_GOOGLE_CLIENT_ID:621484362220-4rf0ss5iqqbo69pk4vjojccqp7vhc602.apps.googleusercontent.com}
-            client-secret: ${YOUR_GOOGLE_CLIENT_SECRET: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}
+            client-id: ${YOUR_GOOGLE_CLIENT_ID}
+            client-secret: ${YOUR_GOOGLE_CLIENT_SECRET}
             scope:
               - email
               - profile
@@ -77,7 +77,4 @@ myapp:
     secret: thisismyjwtsecretkey!123456abcdef
     expireAccessToken: 600 # 30 분 * 60 초
     expireRefreshToken: 1209600 # 14 일 * 24 시 * 60 분 * 60 초
-
-## OAuth2 google 클라이어트ID : 621484362220-4rf0ss5iqqbo69pk4vjojccqp7vhc602.apps.googleusercontent.com
-## OAuth2 google 시크릿 : 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
 
