@@ -2,11 +2,16 @@ package com.mjc813.jwtsecurity_login.jwt;
 
 import com.mjc813.jwtsecurity_login.models.auth.AuthTokenDto;
 import com.mjc813.jwtsecurity_login.models.member.IMember;
+import com.mjc813.jwtsecurity_login.models.redismember.RedisMemberDto;
+import com.mjc813.jwtsecurity_login.models.redismember.RedisMemberService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -14,11 +19,17 @@ import java.util.Date;
 
 @Component
 public class JwtUtils {
-//	@Value("${myapp.jwt.secret:thisismyjwtsecretkey!123456abcdef}")
+//	@Autowired
+//	private StringRedisTemplate redisTemplate;
+	@Autowired
+	private RedisMemberService redisMemberService;
+	@Value("${myapp.jwt.secret:thisismyjwtsecretkey!123456abcdef}")
 	private String secret = "thisismyjwtsecretkey!123456abcdef";
-//	@Value("${myapp.jwt.expireAccessToken}")
-	private Long expireAccessToken = 1800000L; // 30분
-	private Long expireRefreshToken = 604800000L; // 7일
+
+	@Value("${myapp.jwt.expireAccessToken:1800}")
+	private Long expireAccessToken; // 30분
+	@Value("${myapp.jwt.expireRefreshToken:604800}")
+	private Long expireRefreshToken; // 7일
 
 	private final SecretKey secretKey;
 
@@ -34,27 +45,27 @@ public class JwtUtils {
 		return this.generateToken(value, this.expireRefreshToken);
 	}
 
-	public String generateToken(String value, Long milliSeconds) {
+	public String generateToken(String value, Long seconds) {
 		String str = Jwts.builder()
 				.subject(value)
 				.issuedAt(new Date())
-				.expiration(new Date(System.currentTimeMillis() + milliSeconds))
+				.expiration(new Date(System.currentTimeMillis() + seconds * 1000))
 				.signWith(this.secretKey)
 				.compact();
 		return str;
 	}
 
-	public String generateToken(IMember member, Long milliSeconds) {
-		String str = Jwts.builder()
-				.subject(member.getSignId())
-				.claim("role", member.getRole())    // subject 외에 부가정보는 claim 에 추가할수 있다.
-				.claim("email", member.getEmail())  // jwt 에 부가정보 중 개인정보를 넣으면 위험하다.
-				.issuedAt(new Date())
-				.expiration(new Date(System.currentTimeMillis() + milliSeconds))
-				.signWith(this.secretKey)
-				.compact();
-		return str;
-	}
+//	public String generateToken(IMember member, Long seconds) {
+//		String str = Jwts.builder()
+//				.subject(member.getSignId())
+////				.claim("role", member.getRole())    // subject 외에 부가정보는 claim 에 추가할수 있다.
+////				.claim("email", member.getEmail())  // jwt 에 부가정보 중 개인정보를 넣으면 위험하다.
+//				.issuedAt(new Date())
+//				.expiration(new Date(System.currentTimeMillis() + seconds * 1000))
+//				.signWith(this.secretKey)
+//				.compact();
+//		return str;
+//	}
 
 	public Claims parseToken(String token) {
 		try {
@@ -64,10 +75,8 @@ public class JwtUtils {
 					.parseSignedClaims(token)
 					.getPayload();
 			return cl;
-		} catch (ExpiredJwtException | IllegalArgumentException e ) {
-			throw e;
-		} catch (JwtException e ) {
-			throw e;
+		} catch (ExpiredJwtException e) {
+			throw new JwtExpireException(e.getMessage());
 		}
 	}
 
@@ -103,7 +112,33 @@ public class JwtUtils {
 		}
 		return null;
 	}
-	public void saveRedis(String signId, AuthTokenDto authTokenDto){
 
+	public void saveRedis(IMember user, AuthTokenDto authTokenDto) {
+//		this.redisTemplate.opsForValue().set(signId, authTokenDto.getRefreshToken());
+		RedisMemberDto redisMemberDto = RedisMemberDto.builder()
+				.accessToken(authTokenDto.getAccessToken())
+				.refreshToken(authTokenDto.getRefreshToken()).build();
+		redisMemberDto.clone(user, true);
+		this.redisMemberService.insert(redisMemberDto);
+	}
+
+	public void updateRedis(IMember user, AuthTokenDto authTokenDto) {
+		RedisMemberDto redisMemberDto = RedisMemberDto.builder()
+				.accessToken(authTokenDto.getAccessToken())
+				.refreshToken(authTokenDto.getRefreshToken()).build();
+		redisMemberDto.clone(user, true);
+		this.redisMemberService.update(redisMemberDto);
+	}
+
+	public void removeRedis(String signId) {
+//		this.redisTemplate.delete(signId);
+		this.redisMemberService.deleteBySignId(signId);
+	}
+
+	public RedisMemberDto findRedis(String signId) {
+//		String value = this.redisTemplate.opsForValue().get(signId);
+//		return value;
+		RedisMemberDto findDto = this.redisMemberService.findBySignId(signId);
+		return findDto;
 	}
 }

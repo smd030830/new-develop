@@ -3,13 +3,12 @@ package com.mjc813.jwtsecurity_login.models.member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
-public interface IMember extends UserDetails {
+public interface IMember extends UserDetails, OAuth2User {
 	Long getId();
 	void setId(Long id);
 
@@ -87,5 +86,15 @@ public interface IMember extends UserDetails {
 	@Override
 	default String getUsername() {
 		return this.getSignId();
+	}
+
+	@Override
+	default String getName() {
+		return this.getSignId();
+	}
+
+	@Override
+	default Map<String, Object> getAttributes() {
+		return Collections.emptyMap();
 	}
 }

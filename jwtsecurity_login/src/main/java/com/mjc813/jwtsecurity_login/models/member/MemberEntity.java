@@ -17,7 +17,7 @@ public class MemberEntity implements IMember {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "sign_id", nullable = false, length = 20, unique = true)
+	@Column(name = "sign_id", nullable = false, length = 100, unique = true)
 	private String signId;
 
 	@Column(nullable = false, length = 200)

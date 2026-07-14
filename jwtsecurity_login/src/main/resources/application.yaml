@@ -24,6 +24,7 @@ spring:
   #  web:
   #    resources:
   #      add-mappings: false # 404.html 출력 하지 마라
+
   data:
     redis:
       host: localhost
@@ -36,6 +37,33 @@ spring:
           min-idle: 0
           max-wait: -1ms
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${YOUR_GOOGLE_CLIENT_ID:621484362220-4rf0ss5iqqbo69pk4vjojccqp7vhc602.apps.googleusercontent.com}
+            client-secret: ${YOUR_GOOGLE_CLIENT_SECRET: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}
+            scope:
+              - email
+              - profile
+            redirect-url: "{baseUrl}/login/oauth2/code/{registrationId}"
+          github:
+            client-id: ${YOUR_GITHUB_CLIENT_ID}
+            client-secret: ${YOUR_GITHUB_CLIENT_SECRET}
+            scope:
+              - read
+              - profile
+            redirect-url: "{baseUrl}/login/oauth2/code/{registrationId}"
+
+  mustache:
+    prefix: classpath:/templates/    # 템플릿 파일 경로
+    suffix: .html                    # 파일 확장자 (.mustache, .html 등으로 변경 가능)
+    servlet:
+      content-type: text/html       # 응답 Content-Type
+    charset: UTF-8                  # 한글 인코딩 설정
+    cache: false                    # 개발 환경에서는 false, 운영 환경에서는 true 권장
+
 server:
   port: 8083
   servlet:
@@ -47,4 +75,9 @@ server:
 myapp:
   jwt:
     secret: thisismyjwtsecretkey!123456abcdef
-    expireAccessToken: 1800000 # 30 * 60 * 1000
+    expireAccessToken: 600 # 30 분 * 60 초
+    expireRefreshToken: 1209600 # 14 일 * 24 시 * 60 분 * 60 초
+
+## OAuth2 google 클라이어트ID : 621484362220-4rf0ss5iqqbo69pk4vjojccqp7vhc602.apps.googleusercontent.com
+## OAuth2 google 시크릿 : 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
+

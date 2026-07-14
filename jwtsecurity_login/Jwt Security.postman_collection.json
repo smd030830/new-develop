@@ -93,6 +93,37 @@
       "response": []
     },
     {
+      "name": "refresh",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"signId\": \"bbbbb\"\r\n    , \"accessToken\": \"bbbbb\"\r\n    , \"refreshToken\": \"\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/v1/auth/refresh",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "refresh"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "music insert",
       "request": {
         "method": "POST",

@@ -1,6 +1,9 @@
 package com.mjc813.jwtsecurity_login.conf;
 
 import com.mjc813.jwtsecurity_login.models.member.MemberService;
+import com.mjc813.jwtsecurity_login.oauth2.OAuth2FailHandler;
+import com.mjc813.jwtsecurity_login.oauth2.OAuth2MemberService;
+import com.mjc813.jwtsecurity_login.oauth2.OAuth2SuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +37,12 @@ public class CWCWebSecurityConfig {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private OAuth2MemberService oauth2MemberService;
+	@Autowired
+	private OAuth2FailHandler oauth2FailHandler;
+	@Autowired
+	private OAuth2SuccessHandler oauth2SuccessHandler;
 
 	@Bean
 	public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -92,11 +101,20 @@ public class CWCWebSecurityConfig {
 					.requestMatchers("/").permitAll()
 					.requestMatchers("/signup").permitAll()
 					.requestMatchers("/signin").permitAll()
+					.requestMatchers("/api/v1/auth/signout").authenticated()
 					.requestMatchers("/api/v1/auth/**").permitAll()
+					.requestMatchers("/oauth2/**").permitAll()
+					.requestMatchers("/login/oauth2/**").permitAll()
 					.anyRequest().authenticated()
 			)
 			.sessionManagement(x ->
 				x.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			)
+			.oauth2Login(x -> x.userInfoEndpoint(
+					u -> u.userService(oauth2MemberService)
+				)
+				.successHandler(oauth2SuccessHandler)
+				.failureHandler(oauth2FailHandler)
 			)
 			.authenticationProvider(daoAuthenticationProvider())
 			.addFilterBefore(cwcAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

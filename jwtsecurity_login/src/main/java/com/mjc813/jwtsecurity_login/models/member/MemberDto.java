@@ -1,6 +1,7 @@
 package com.mjc813.jwtsecurity_login.models.member;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class MemberDto implements IMember {
 	private Long id;
 	private String signId;

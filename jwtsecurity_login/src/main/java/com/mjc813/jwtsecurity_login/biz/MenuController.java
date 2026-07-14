@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MenuController {
@@ -14,11 +15,13 @@ public class MenuController {
 
 	@GetMapping("/")
 	public String index(Model model) {
-		Object obj = model.getAttribute("signedMember");
-		if ( obj instanceof IMember signedMember) {
-			model.addAttribute("signedMember", signedMember);
-		}
-		return "home";
+		return "index";
+	}
+
+	@GetMapping("/error")
+	public String error(Model model, @RequestParam(name = "msg") String msg) {
+		model.addAttribute("message", msg);
+		return "error";
 	}
 
 	@GetMapping("/signup")
